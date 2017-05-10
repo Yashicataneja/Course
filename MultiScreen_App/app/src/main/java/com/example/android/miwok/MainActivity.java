@@ -17,6 +17,8 @@ package com.example.android.miwok;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -24,51 +26,63 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtphrases,txtnumber,txtfamily,txtcolors;
+//    TextView txtphrases,txtnumber,txtfamily,txtcolors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        txtphrases =(TextView)findViewById(R.id.phrases);
-        txtphrases.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this,PhrasesActivity.class);
-                startActivity(i);
-                Toast.makeText(getApplicationContext(),"Phrases of Language",Toast.LENGTH_LONG).show();
-            }
-        });
-        txtcolors = (TextView)findViewById(R.id.colors);
-        txtcolors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this,ColorsActivity.class);
-                startActivity(i);
-                Toast.makeText(getApplicationContext(),"Colors of Language",Toast.LENGTH_LONG).show();
-            }
-        });
-        txtnumber = (TextView)findViewById(R.id.numbers);
-        txtnumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this,NumbersActivity.class);
-                startActivity(i);
-                Toast.makeText(getApplicationContext(),"Numbers of Language",Toast.LENGTH_LONG).show();
-            }
-        });
-        txtfamily = (TextView)findViewById(R.id.family);
-        txtfamily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(MainActivity.this,FamilyActivity.class);
-                startActivity(i);
-                Toast.makeText(getApplicationContext(),"Family of Language",Toast.LENGTH_LONG).show();
-            }
-        });
+        // Create an adapter that knows which fragment should be shown on each page
+        CategoryAdapter adapter = new CategoryAdapter(this,getSupportFragmentManager());
+
+
+        // Set the adapter onto the view pager
+        viewPager.setAdapter(adapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+//        // Set the content of the activity to use the activity_main.xml layout file
+//        setContentView(R.layout.activity_main);
+//
+//        txtphrases =(TextView)findViewById(R.id.phrases);
+//        txtphrases.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i =new Intent(MainActivity.this,PhrasesActivity.class);
+//                startActivity(i);
+//                Toast.makeText(getApplicationContext(),"Phrases of Language",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//        txtcolors = (TextView)findViewById(R.id.colors);
+//        txtcolors.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i =new Intent(MainActivity.this,ColorsActivity.class);
+//                startActivity(i);
+//                Toast.makeText(getApplicationContext(),"Colors of Language",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//        txtnumber = (TextView)findViewById(R.id.numbers);
+//        txtnumber.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i =new Intent(MainActivity.this,NumbersActivity.class);
+//                startActivity(i);
+//                Toast.makeText(getApplicationContext(),"Numbers of Language",Toast.LENGTH_LONG).show();
+//            }
+//        });
+//        txtfamily = (TextView)findViewById(R.id.family);
+//        txtfamily.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i =new Intent(MainActivity.this,FamilyActivity.class);
+//                startActivity(i);
+//                Toast.makeText(getApplicationContext(),"Family of Language",Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
     }
